@@ -1,6 +1,59 @@
 <!DOCTYPE html>
 <html>
-<body>
-<h1>Hello World</h1>
+<head>
+	<title>Hangman</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<style>
+		body.not-logged-in #guess_form {
+			display: none;
+		}
+		body.logged-in #login_form {
+			display: none;
+		}
+	</style>
+</head>
+<body class="not-logged-in">
+	<form id="login_form">
+	  <div class="form-group">
+		<label for="exampleInputEmail1">Brugernavn</label>
+		<input type="text" class="form-control" id="brugernavn" name="brugernavn" placeholder="Email">
+	  </div>
+	  <div class="form-group">
+		<label for="exampleInputPassword1">Password</label>
+		<input type="password" class="form-control" id="password" name="password" placeholder="Password">
+	  </div>
+	  <button type="submit" class="btn btn-default">Login</button>
+	</form>
+	<form id="guess_form">
+	  <div class="form-group">
+		<label for="exampleInputEmail1">Gæt et bogstav</label>
+		<input type="text" class="form-control" id="bogstav" name="bogstav" placeholder="">
+	  </div>
+		<h1>Syngligt ord</h1>
+		<div id="result"></div>
+	</form>
+	<script>
+		$( document ).ready(function() {
+			$("#login_form").submit(function(event){
+				event.preventDefault();
+				console.log($(this).serializeArray());
+				$.post("api", $(this).serializeArray(), function(result){
+					console.log(result);
+					$("body").removeClass("not-logged-in").addClass("logged-in");
+				});
+			});
+			$("#guess_form").submit(function(event){
+				event.preventDefault();
+				console.log($(this).serializeArray());
+				$.get("https://dawa.aws.dk/autocomplete?kommunekode=101&q=" + $("#bogstav").val() + "&type=adresse&caretpos=2&supplerendebynavn=true&stormodtagerpostnumre=true&multilinje=true&fuzzy=", function(result){
+					console.log(result);
+					$("#result").text(result[0]['tekst']);
+				});
+			});
+		});
+	</script>
 </body>
 </html>
