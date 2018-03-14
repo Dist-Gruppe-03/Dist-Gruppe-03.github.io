@@ -1,3 +1,6 @@
+			div {
+			border: 0px solid red;
+			}
 			body.not-logged-in #guess_form {
 				display: none;
 			}
@@ -7,7 +10,17 @@
 			div.positioning {
 				width: 95%;
 				margin: auto;
+			}
+			.content {
+				margin: auto;
 				padding: 10px;
+			}	
+			.left {
+				width: 70%;
+				display: table-cell;
+			}
+			.right {
+				display: table-cell;
 			}
 			.header {
 				background-color: #ecf2f8;
@@ -26,8 +39,4 @@
 			div.headerline {
 				background-color: #3973ac; 
 				height: 10px;
-			}
-			
-			div {
-			border: 1px solid red;
 			}
