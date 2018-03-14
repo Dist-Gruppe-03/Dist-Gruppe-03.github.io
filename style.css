@@ -1,5 +1,5 @@
 			div {
-			border: 0px solid red;
+				border: 0px solid red;
 			}
 			body.not-logged-in #guess_form {
 				display: none;
@@ -7,7 +7,7 @@
 			body.logged-in #login_form {
 				display: none;
 			}
-			div.positioning {
+			.positioning {
 				width: 95%;
 				margin: auto;
 			}
@@ -20,7 +20,8 @@
 				display: table-cell;
 			}
 			.right {
-				display: table-cell;
+				display: none;
+				//display: table-cell;
 			}
 			.header {
 				background-color: #ecf2f8;
@@ -28,15 +29,16 @@
 				padding: 10px;
 				display: table;
 				width: 100%;
-				}
+			}
+			.headerline {
+				background-color: #3973ac; 
+				height: 10px;
+			}
 			.valign {
 				display:table-cell;
 				vertical-align:middle
 			}	
-			.container {
-				display: flex;
+			.hangman {
+				margin: auto;
+				width: 170px;
 			}	
-			div.headerline {
-				background-color: #3973ac; 
-				height: 10px;
-			}

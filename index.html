@@ -9,76 +9,87 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link rel="stylesheet" href="style.css">
 	</head>
-
 	<body class="not-logged-in">
-<!-- Page header -->
+	<!-- Page header -->
 	<div class="header">
 		<div class="valign">
 			<h1>Galgeleg</h1>
 		</div>
 	</div>
 	<div class="headerline"></div>
-<!-- Content -->
+	<!-- Content -->
 	<div class="positioning">
-	
-
-		
 		<div style="width: 100%; display: table;">
 			<div style="display: table-row">
+				<!--Game-->
 				<div class="content left">
-					
-							<form id="login_form">
-		  <div class="form-group">
-			<label for="InputUsername">Brugernavn</label>
-			<input type="text" class="form-control" id="username" name="username" placeholder="Brugernavn">
-		  </div>
-		  <div class="form-group">
-			<label for="InputPassword">Password</label>
-			<input type="password" class="form-control" id="password" name="password" placeholder="Password">
-		  </div>
-		  <button type="submit" class="btn btn-default">Login</button>
-		</form>
-		
-		
-		<form id="guess_form">
-		  <div class="form-group">
-			<label for="exampleInputEmail1">Gæt et bogstav</label>
-			<input type="text" class="form-control" id="bogstav" name="bogstav" placeholder="">
-		  </div>
-			<h1>Synligt ord</h1>
-			<div id="result"></div>
-		</form>
-					
+					<form id="login_form">
+					  <div class="form-group">
+						<label for="InputUsername">Brugernavn</label>
+						<input type="text" class="form-control" id="username" name="username" placeholder="Brugernavn">
+					  </div>
+					  <div class="form-group">
+						<label for="InputPassword">Password</label>
+						<input type="password" class="form-control" id="password" name="password" placeholder="Password">
+					  </div>
+					  <button type="submit" class="btn btn-default">Login</button>
+					  <div id="feedback"></div>
+					</form>
+
+					<form id="guess_form">
+						<div class="hangman">
+							<img src="grafik/galge.png" alt="grafik" style="width:170px;height:205px">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1">Gæt et bogstav</label>
+							<input type="text" class="form-control" id="letter" name="letter" placeholder="Bogstav">
+							<div id="sendguess"></div>
+						</div>
+						<div id="invisibleword"></div>
+						<div id="wrongguesses"></div>
+
+						<div id="result"></div>
+						<!--
+						ids:
+						feedback = login failed/succeed
+						sendguess = der gættes på
+						invisibleword = usynligt ord som skal gættes
+						wrongguesses = forkerte ord
+						-->
+					</form>
 				</div>
+				<!--Highscore-->
 				<div class="content right">
-					Highscore
+					Highscore<br>
+					(Not yet implemented)
 				</div>
 			</div>
 		</div>
-		
+		<!--Logic-->
 		<script>
+		
 			$( document ).ready(function() {
 				$("#login_form").submit(function(event){
 					event.preventDefault();
 					console.log($(this).serializeArray());
 					<!--$.post("api", $(this).serializeArray(), function(result){ -->
-					$.get("https://dawa.aws.dk/autocomplete?kommunekode=101&q=" + $("#bogstav").val() + "&type=adresse&caretpos=2&supplerendebynavn=true&stormodtagerpostnumre=true&multilinje=true&fuzzy=", function(result){
+					$.get("https://dawa.aws.dk/autocomplete?kommunekode=101&q=" + $("#letter").val() + "&type=adresse&caretpos=2&supplerendebynavn=true&stormodtagerpostnumre=true&multilinje=true&fuzzy=", function(result){
 					
 						console.log(result);
 						$("body").removeClass("not-logged-in").addClass("logged-in");
 					});
 				});
+				
 				$("#guess_form").submit(function(event){
 					event.preventDefault();
 					console.log($(this).serializeArray());
-					$.get("https://dawa.aws.dk/autocomplete?kommunekode=101&q=" + $("#bogstav").val() + "&type=adresse&caretpos=2&supplerendebynavn=true&stormodtagerpostnumre=true&multilinje=true&fuzzy=", function(result){
+					$.get("https://dawa.aws.dk/autocomplete?kommunekode=101&q=" + $("#letter").val() + "&type=adresse&caretpos=2&supplerendebynavn=true&stormodtagerpostnumre=true&multilinje=true&fuzzy=", function(result){
 						console.log(result);
 						$("#result").text(result[0]['tekst']);
 					});
 				});
 			});
 		</script>
-		
 		</div>
 	</body>
 </html>
