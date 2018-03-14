@@ -1,0 +1,33 @@
+			body.not-logged-in #guess_form {
+				display: none;
+			}
+			body.logged-in #login_form {
+				display: none;
+			}
+			div.positioning {
+				width: 95%;
+				margin: auto;
+				padding: 10px;
+			}
+			.header {
+				background-color: #ecf2f8;
+				height: 80px;
+				padding: 10px;
+				display: table;
+				width: 100%;
+				}
+			.valign {
+				display:table-cell;
+				vertical-align:middle
+			}	
+			.container {
+				display: flex;
+			}	
+			div.headerline {
+				background-color: #3973ac; 
+				height: 10px;
+			}
+			
+			div {
+			border: 1px solid red;
+			}

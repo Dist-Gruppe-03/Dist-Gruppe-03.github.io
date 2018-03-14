@@ -3,65 +3,37 @@
 <html>
 	<head>
 		<title>Galgeleg</title>
-		
-		 <meta charset="utf-8">
+		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		
-		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-		<style>
-			body.not-logged-in #guess_form {
-				display: none;
-			}
-			body.logged-in #login_form {
-				display: none;
-			}
-			div.positioning {
-				width: 90%;
-				margin: auto;
-				padding: 10px;
-			}
-			div.header {
-				background-color: #ecf2f8;
-				height: 80px;
-				padding: 10px;
-
-				}
-			div.headerline {
-				background-color: #3973ac; 
-				height: 10px;
-			}
-			
-			div {
-			border: 0px solid red;
-			}
-		</style>
-		
+		<link rel="stylesheet" href="style.css">
 	</head>
 
 	<body class="not-logged-in">
-	
+<!-- Page header -->
 	<div class="header">
-	<h1>Galgeleg</h1>
-	
+		<div class="valign">
+			<h1>Galgeleg</h1>
+		</div>
 	</div>
-		<div class="headerline"></div>
-	
+	<div class="headerline"></div>
+<!-- Content -->
 	<div class="positioning">
 	
 		<form id="login_form">
 		  <div class="form-group">
-			<label for="exampleInputEmail1">Brugernavn</label>
-			<input type="text" class="form-control" id="brugernavn" name="brugernavn" placeholder="Brugernavn">
+			<label for="InputUsername">Brugernavn</label>
+			<input type="text" class="form-control" id="username" name="username" placeholder="Brugernavn">
 		  </div>
 		  <div class="form-group">
-			<label for="exampleInputPassword1">Password</label>
+			<label for="InputPassword">Password</label>
 			<input type="password" class="form-control" id="password" name="password" placeholder="Password">
 		  </div>
 		  <button type="submit" class="btn btn-default">Login</button>
 		</form>
+		
+		
 		<form id="guess_form">
 		  <div class="form-group">
 			<label for="exampleInputEmail1">Gæt et bogstav</label>
