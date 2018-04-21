@@ -36,24 +36,15 @@
 
 						<form id="guess_form">
 							<div class="hangman">
-								<img src="grafik/galge.png" alt="grafik" style="width:170px;height:205px">
+								<img src="grafik/forkert0.png" id="image" alt="grafik" style="width:170px;height:205px">
+								<div id="invisibleword"></div>
+								<div id="usedletters"></div>
 							</div>
 							<div class="form-group">
-								<label for="exampleInputEmail1">Gæt et bogstav</label>
+								<label for="InputLetter">Gæt et bogstav</label>
 								<input type="text" class="form-control" id="letter" name="letter" placeholder="Bogstav" autocomplete="off">
-								<div id="sendguess"></div>
+								<div id="result"></div>
 							</div>
-							<div id="invisibleword"></div>
-							<div id="wrongguesses"></div>
-
-							<div id="result"></div>
-							<!--
-							ids:
-							feedback = login failed/succeed
-							sendguess = der gættes på
-							invisibleword = usynligt ord som skal gættes
-							wrongguesses = forkerte ord
-							-->
 						</form>
 					</div>
 					<!--Highscore-->
