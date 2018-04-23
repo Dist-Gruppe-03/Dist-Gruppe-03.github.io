@@ -4,6 +4,12 @@
 			body.logged-in #login_form {
 				display: none;
 			}
+			#retry_button {
+				text-align: center;
+				margin: auto;
+				width: 250px;
+				display: none;
+			}
 			.positioning {
 				width: 95%;
 				margin: auto;
@@ -34,3 +40,6 @@
 				margin: auto;
 				width: 170px;
 			}	
+			#usedletters{
+				text-transform: uppercase;
+			}}
