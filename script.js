@@ -13,7 +13,6 @@ $(document).ready(function() {
 	});
 	
 		$.get("http://ubuntu4.saluton.dk:38055/RestServer/hangman/play/json/s114992?reset=true", function(result){
-		$("#image").attr("src","grafik/forkert" + result.wrongletters + ".png");
 		document.getElementById("usedletters").innerHTML = result.usedletters;
 		document.getElementById("invisibleword").innerHTML = result.invisibleword;
 	});
@@ -43,6 +42,7 @@ $(document).ready(function() {
 			document.getElementById("result").innerHTML = result.response;
 			document.getElementById("usedletters").innerHTML = result.usedletters;
 			document.getElementById("invisibleword").innerHTML = result.invisibleword;
+			$("#image").attr("src","grafik/forkert" + result.wrongletters + ".png");
 		});
 	});
 	
