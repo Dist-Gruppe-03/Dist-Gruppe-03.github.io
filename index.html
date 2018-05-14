@@ -12,7 +12,8 @@
 	<body class="not-logged-in">
 		<!-- Page header -->
 		<div class="header">
-			<h1>Galgeleg</h1>
+			<div class="head"><h1>Galgeleg</h1></div>
+			<div class="head" id="name"></div>
 		</div>
 		<div class="headerline"></div>
 		<!-- Content -->
@@ -35,7 +36,7 @@
 						</form>
 
 						<form id="guess_form">
-							<div class="hangman">
+							<div class="hangman middle">
 								<img src="grafik/forkert0.png" id="image" alt="grafik" style="width:170px;height:205px">
 								<div id="invisibleword"></div>
 								<div id="usedletters"></div>
@@ -45,9 +46,12 @@
 								<input type="text" class="form-control" id="letter" name="letter" placeholder="Bogstav" autocomplete="off">
 								<div id="result"></div>
 							</div>
+						</form>
+						<form id="reset_form">
 							<div class="form-group" id="retry_button">
+								<input type="hidden" id="reset" name="reset" value="true">
 								<div id="result2"></div>
-								<button type="button" id="button" class="btn btn-default">Vil du prøve igen?</button>
+								<button type="button" id="button" class="btn btn-default">Nyt spil</button>
 							</div>
 						</form>
 					</div>

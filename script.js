@@ -1,28 +1,59 @@
 $(document).ready(function() {
 	
+	var gamepath;
+	
+// Login form
 	$("#login_form").submit(function(event){
+
 		event.preventDefault();
-		console.log($(this).serializeArray());
-		//<!--$.post("api", $(this).serializeArray(), function(result){ -->
-		$.get("https://dawa.aws.dk/autocomplete?kommunekode=101&q=" + $("#letter").val() + "&type=adresse&caretpos=2&supplerendebynavn=true&stormodtagerpostnumre=true&multilinje=true&fuzzy=", function(result){
+		var user = $("#username").val(); 
+		var pass = $("#password").val();
 		
-			console.log(result);
-			$("body").removeClass("not-logged-in").addClass("logged-in");
+		var sendInfo = {
+			username: user,
+			password: pass
+		};
+		
+		$.ajax({
+			type: "POST",
+			url: "http://localhost:8080/web/api/login",
+			data: JSON.stringify(sendInfo),
+			contentType: "application/json; charset=utf-8",
+			success: function(response){
+				//alert(response.gamepath);
+				if (response == null) {
+					$("#password").val(""); // empty box
+					document.getElementById("feedback").innerHTML = "Forkert brugernavn eller password.";
+				}
+				else {
+					gamepath = response.gamepath;
+					$("body").removeClass("not-logged-in").addClass("logged-in");
+					$("#login_form").hide();
+					
+					// Init game in progress
+					$.get(gamepath, function(result){
+					$("#image").attr("src","grafik/forkert" + result.wrongletters + ".png");
+					document.getElementById("usedletters").innerHTML = result.usedletters;
+					document.getElementById("invisibleword").innerHTML = result.invisibleword;
+					document.getElementById("name").innerHTML = "Velkommen " + result.name;
+					});
+				}
+			}
 		});
-		$("#login_form").hide();
-	});
-	
-		$.get("http://ubuntu4.saluton.dk:38055/RestServer/hangman/play/json/s114992?reset=true", function(result){
-		document.getElementById("usedletters").innerHTML = result.usedletters;
-		document.getElementById("invisibleword").innerHTML = result.invisibleword;
-	});
-	
+		
+    });
+
+// Update gameplay data
 	$("#guess_form").submit(function(event){
 		event.preventDefault();
-		$.get("http://ubuntu4.saluton.dk:38055/RestServer/hangman/play/json/s114992?letter=" + $("#letter").val(), function(result){
+		// Post the guessed letter to api
+		 $.post(gamepath, $("#letter").serialize(), function(result) {
+			document.getElementById("result").innerHTML = result;
+			document.getElementById("result2").innerHTML = result;
+		});
 		
+		$.get(gamepath, function(result){
 			$("#image").attr("src","grafik/forkert" + result.wrongletters + ".png");
-			document.getElementById("result").innerHTML = result.response;
 			document.getElementById("usedletters").innerHTML = result.usedletters;
 			document.getElementById("invisibleword").innerHTML = result.invisibleword;
 			$("#letter").val(""); // empty box
@@ -30,20 +61,22 @@ $(document).ready(function() {
 			if(result.gameover === "true") {
 				$("#guess_box").hide();
 				$("#retry_button").show();
-				document.getElementById("result2").innerHTML = result.response;
 			} 
-			});
+		});
 	});
 	
-	$( "#button" ).click(function() {
-		$.get("http://ubuntu4.saluton.dk:38055/RestServer/hangman/play/json/s114992?reset=true", function(result){
-			$("#retry_button").hide();
-			$("#guess_box").show();
-			document.getElementById("result").innerHTML = result.response;
+	$( "#button" ).click(function(event) {
+		event.preventDefault();
+		$.post(gamepath, $("#reset").serialize(), function(result) {
+			document.getElementById("result").innerHTML = result;
+		});
+		$.get(gamepath, function(result){
 			document.getElementById("usedletters").innerHTML = result.usedletters;
 			document.getElementById("invisibleword").innerHTML = result.invisibleword;
 			$("#image").attr("src","grafik/forkert" + result.wrongletters + ".png");
 		});
+		$("#retry_button").hide();
+		$("#guess_box").show();
 	});
 	
 });

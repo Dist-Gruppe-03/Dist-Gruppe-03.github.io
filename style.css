@@ -26,6 +26,10 @@
 				display: none;
 				//display: table-cell;
 			}
+			.middle {
+				width: 100%;
+				text-align: center;
+			}
 			.header {
 				background-color: #ecf2f8;
 				height: 80px;
@@ -38,8 +42,25 @@
 			}
 			.hangman {
 				margin: auto;
-				width: 170px;
+				width: 250px;
+				vertical-align:middle;
 			}	
 			#usedletters{
 				text-transform: uppercase;
+			}
+			#feedback{
+				display: inline-block;
+				padding-left: 20px;
+				margin: auto;
+			}
+			.submit{
+				display: inline-block;
+			}
+			.head {
+				display: inline-block;
+			}
+			#name {
+				display: inline-block;
+				padding-left: 20px;
+				margin: auto;
 			}
