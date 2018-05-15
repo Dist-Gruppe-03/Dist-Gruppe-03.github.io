@@ -63,4 +63,7 @@
 				display: inline-block;
 				padding-left: 20px;
 				margin: auto;
+				text-align:justify;
+				word-wrap: break-word;
+				position: absolute; 
 			}
