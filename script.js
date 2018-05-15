@@ -16,11 +16,10 @@ $(document).ready(function() {
 		
 		$.ajax({
 			type: "POST",
-			url: "http://localhost:8080/web/api/login",
+			url: "/web/api/login",
 			data: JSON.stringify(sendInfo),
 			contentType: "application/json; charset=utf-8",
 			success: function(response){
-				//alert(response.gamepath);
 				if (response == null) {
 					$("#password").val(""); // empty box
 					document.getElementById("feedback").innerHTML = "Forkert brugernavn eller password.";
@@ -70,7 +69,7 @@ $(document).ready(function() {
 		$.post(gamepath, $("#reset").serialize(), function(result) {
 			document.getElementById("result").innerHTML = result;
 		});
-		$.get(gamepath, function(result){
+			$.get(gamepath, function(result){
 			document.getElementById("usedletters").innerHTML = result.usedletters;
 			document.getElementById("invisibleword").innerHTML = result.invisibleword;
 			$("#image").attr("src","grafik/forkert" + result.wrongletters + ".png");
@@ -78,5 +77,4 @@ $(document).ready(function() {
 		$("#retry_button").hide();
 		$("#guess_box").show();
 	});
-	
 });
