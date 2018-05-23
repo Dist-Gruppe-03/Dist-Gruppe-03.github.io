@@ -1,4 +1,4 @@
-$(document).ready(function() {
+﻿$(document).ready(function() {
 	
 	var gamepath;
 	
@@ -16,8 +16,7 @@ $(document).ready(function() {
 		
 		$.ajax({
 			type: "POST",
-			url: "http://localhost:8080/web/api/login",
-			//url: "http://ubuntu4.saluton.dk:38055/web/api/login",
+			url: "http://ubuntu4.saluton.dk:38055/web/api/login",
 			data: JSON.stringify(sendInfo),
 			contentType: "application/json; charset=utf-8",
 			statusCode: {

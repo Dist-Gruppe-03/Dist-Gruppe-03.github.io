@@ -3,7 +3,7 @@ $(document).ready(function () {
     var gamepath;
     getHighscore();
 
-// Login form
+    // Login form
     $("#login_form").submit(function (event) {
 
         event.preventDefault();
@@ -17,8 +17,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "http://localhost:8080/web/api/login",
-            //url: "http://ubuntu4.saluton.dk:38055/web/api/login",
+            url: "api/login",
             data: JSON.stringify(sendInfo),
             contentType: "application/json; charset=utf-8",
             statusCode: {
@@ -44,7 +43,7 @@ $(document).ready(function () {
         });
     });
 
-// Update gameplay data
+    // Update gameplay data
     $("#guess_form").submit(function (event) {
         event.preventDefault();
         // Post the guessed letter to api
@@ -64,11 +63,13 @@ $(document).ready(function () {
         });
     });
 
+    // Reset game
     $("#button").click(function (event) {
         event.preventDefault();
         $.post(gamepath, $("#reset").serialize(), function (result) {
             $("#result").html(result);
         });
+        getHighscore();
         $.get(gamepath, function (result) {
             updateGameInfo(result);
         });
@@ -76,19 +77,25 @@ $(document).ready(function () {
         $("#guess_form").show();
     });
 
+    // Update game info
     function updateGameInfo(info) {
         $("#image").attr("src", "grafik/forkert" + info.wrongletters + ".png");
         $("#usedletters").html(info.usedletters);
         $("#invisibleword").html(info.invisibleword);
     }
 
+    // Get highscore
     function getHighscore() {
-        $.getJSON("http://localhost:8080/web/api/highscore", function (data) {
-            var test = "";
-            $(data.highscores).each(function(i, scores) {
-                test += scores.username + " : " + scores.score + "<br>";
+        $.getJSON("api/highscore", function (data) {
+            var highscoreList = "<div class=\"row\"><div class=\"col-12 pt-0\"><h5>Highscore</h5></div></div>";
+            $(data.highscores).each(function (i, scores) {
+                highscoreList += "<div class=\"row border-top\">";
+                highscoreList += "<div class=\"col-1 p-1 text-muted\">" + (i + 1) + ".</div>"
+                highscoreList += "<div class=\"col-9 p-1\">" + scores.username + "</div>"
+                highscoreList += "<div class=\"col-2 text-right p-1\">" + scores.score + "</div>";
+                highscoreList += "</div>";
             });
-            $("#highscore").html(test);
+            $("#highscore").html(highscoreList);
         });
     }
 });

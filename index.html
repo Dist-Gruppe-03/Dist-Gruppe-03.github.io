@@ -6,12 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="script.js"></script>
-    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    -->
-    <script src="js/bootstrap.js"></script>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
 </head>
 <body>
 <!-- Page Header -->
@@ -60,15 +57,12 @@
 <div class="container pt-2" id="game">
     <div class="row">
         <div class="col-md-8">
-
-            <div class="hangman middle">
+            <div class="hangman text-center">
                 <img src="grafik/forkert0.png" id="image" alt="grafik" style="width:170px;height:205px">
-                <div id="invisibleword"></div>
-                <div id="usedletters"></div>
+                <div class="h5" id="invisibleword"></div>
+                <div class="h6" id="usedletters"></div>
             </div>
-
             <form id="guess_form">
-
                 <div class="form-group" id="guess_box">
                     <label for="letter">Gæt et bogstav</label>
                     <input type="text" class="form-control" id="letter" name="letter" placeholder="Bogstav"
@@ -76,9 +70,8 @@
                     <div id="result"></div>
                 </div>
             </form>
-
             <form id="reset_form">
-                <div class="form-group" id="retry_button">
+                <div class="form-group text-center" id="retry_button">
                     <input type="hidden" id="reset" name="reset" value="true">
                     <div id="result2"></div>
                     <button type="button" id="button" class="btn btn-default">Nyt spil</button>
@@ -86,7 +79,6 @@
             </form>
         </div>
         <div class="col-md-4" id="highscore">
-
         </div>
     </div>
 </div>
